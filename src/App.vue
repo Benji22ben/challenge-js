@@ -92,28 +92,33 @@ export default {
     this.addAge();
     mapboxgl.accessToken = 'pk.eyJ1IjoiYmVuNDYwMCIsImEiOiJjbGU3N3NmdGowMndtM3ZsOGhsZWVoMWV0In0.LY8QIB0z866pzrTGCVxjCQ';
 
-    const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
-    mapboxClient.geocoding
-      .forwardGeocode({
-        query: 'Wellington, New Zealand',
-        autocomplete: false,
-        limit: 1
-      })
-      .send()
-      .then((response) => {
-        if (
-          !response ||
-          !response.body ||
-          !response.body.features ||
-          !response.body.features.length
-        ) {
-          console.error('Invalid response:');
-          console.error(response);
-          return;
-        }
-        const feature = response.body.features[0];
+    // const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+    // mapboxClient.geocoding
+    //   .forwardGeocode({
+    //     query: 'Wellington, New Zealand',
+    //     autocomplete: false,
+    //     limit: 1
+    //   })
+    //   .send()
+    //   .then((response) => {
+    //     if (
+    //       !response ||
+    //       !response.body ||
+    //       !response.body.features ||
+    //       !response.body.features.length
+    //     ) {
+    //       console.error('Invalid response:');
+    //       console.error(response);
+    //       return;
+    //     }
+    //     const feature = response.body.features[0];
 
-        const map = new mapboxgl.Map({
+
+
+    //     // Create a marker and add it to the map.
+    //     new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+    //   });
+      const map = new mapboxgl.Map({
           container: 'map',
           style: 'mapbox://styles/mapbox/streets-v12', // style URL
           center: [5.898514002087383, 45.68925369065059], // starting position [lng, lat]
@@ -121,10 +126,6 @@ export default {
         });
 
         this.markerForEachUser(this.family, map)
-
-        // Create a marker and add it to the map.
-        new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
-      });
   },
   methods: {
     addAge() {
